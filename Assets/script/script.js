@@ -1,53 +1,53 @@
-function loadPage(){
-    let city;
-    let cityArray = JSON.parse(localStorage.getItem("cities")) || [];
-    // Creates API call Key for inputed City 
-    const APIKey = "851f848d274c31bfc439d660f647c15c";
-    let APICall = ("https://api.openweathermap.org/data/2.5/weather?q=" + city +"&appid=" + APIKey);
+function loadPage() {
+  let city;
+  let cityArray = JSON.parse(localStorage.getItem('cities')) || [];
+  // Creates API call Key for inputed City
+  const APIKey = '851f848d274c31bfc439d660f647c15c';
+  let APICall =
+    'https://api.openweathermap.org/data/2.5/weather?q=' +
+    city +
+    '&appid=' +
+    APIKey;
 
-
-    // Event listener function for search button.
-    $("#searchBtn").on('click',function(){
-        let cityInput = $("#cityInput");
-        city = cityInput.val().trim();
-        if (city === "") {
-            return;
-            }
-        cityArray.push(city);
-        localStorage.setItem("cities", JSON.stringify(cityArray));
-        displayHistory();
-        location.reload();
-    });
-
-    //  Clears the the search history list
-    $("#clearBtn").on("click", function(){
-        localStorage.clear();
-        cityArray = [];
-        displayHistory();
-        location.reload();
-    });
-
-    function displayHistory(){
-        $(".history").innerHTML = "";
-        for (let i = 0; i < cityArray.length; i++) {
-                let listedCity = $("<button>")
-                listedCity.text(cityArray[i])
-                listedCity.addClass("p-2 btn btn-light rounded-0 d-block");
-                listedCity.on('click',function() {
-                    fetchWeather(listedCity.val());
-                })
-                $(".history").append(listedCity)
-            };
+  // Event listener function for search button.
+  $('#searchBtn').on('click', function () {
+    let cityInput = $('#cityInput');
+    city = cityInput.val().trim();
+    if (city === '') {
+      return;
     }
+    cityArray.push(city);
+    localStorage.setItem('cities', JSON.stringify(cityArray));
+    displayHistory();
+    location.reload();
+  });
 
-        displayHistory();
-        if (cityArray.length > 0) {
-            fetchWeather(cityArray[cityArray.length - 1]);
-        }
-    function fetchWeather() {
+  //  Clears the the search history list
+  $('#clearBtn').on('click', function () {
+    localStorage.clear();
+    cityArray = [];
+    displayHistory();
+    location.reload();
+  });
 
+  function displayHistory() {
+    $('.history').innerHTML = '';
+    for (let i = 0; i < cityArray.length; i++) {
+      let listedCity = $('<button>');
+      listedCity.text(cityArray[i]);
+      listedCity.addClass('p-2 btn btn-light rounded-0 d-block');
+      listedCity.on('click', function () {
+        fetchWeather(listedCity.val());
+      });
+      $('.history').append(listedCity);
     }
+  }
 
+  displayHistory();
+  if (cityArray.length > 0) {
+    fetchWeather(cityArray[cityArray.length - 1]);
+  }
+  function fetchWeather() {}
 }
 
 loadPage();
@@ -73,7 +73,7 @@ loadPage();
 
 // function load() {
 //     let storedHistory = JSON.parse(localStorage.getItem("cityArray")) || [];
-    
+
 //     if (storedHistory !== null) {
 //         cityArray = storedHistory;
 //     }
@@ -104,4 +104,3 @@ loadPage();
 // });
 
 // load();
-
