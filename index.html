@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css2?family=Sofia+Sans:wght@100;400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="Assets/css/style.css">
+    <link rel="icon" href="Assets/Images/globe.png" type="image/x-icon">
+    <title>Culture Cruncher</title>
+  </head>
+  <body class="bg-body-secondary">
+    <header class="p-2 mb-4 border-1 border-bottom text-center bg-warning bg-gradient">
+        <h1><i class="bi bi-globe"></i> Culture Cruncher</h1>
+    </header>
+
+    
+    <main class="flex-wrap d-flex" >
+        <!-- Search Display -->
+        <section class="p-2 col-12 col-sm-12 col-md-4 float-left ">
+            <div class="card rounded-0 ">
+                <h3 class="card-header bg-warning bg-gradient rounded-0"><i class="bi bi-search"></i> Search for City</h3>
+                <div class="card-body row m-1">
+                  <input type="text" id="cityInput" placeholder="Enter city name...">
+                  <button class="mt-2 btn btn-dark rounded-0 d-block" id="searchBtn">Search</button>
+                </div>
+                <div class="d-grid gap-2">
+                    <h4 class="card-header bg-warning bg-gradient rounded-0"><i class="bi bi-clock-history"></i> Search History</h4>
+                    <div class="d-grid gap-2 m-2 card-body history">
+                      <!-- Search History list will be appeneded here -->
+                    </div>
+                    <button class="mt-2 btn btn-dark rounded-0 d-block" id="clearBtn">Clear History</button>
+                </div>
+            </div>
+        </section>  
+
+        <!-- Facts -->
+        <section class="p-2 col-12 col-sm-12 col-md-8 float-right">
+            <div>
+              <h2 class="p-2 m-1 card-header bg-warning bg-gradient rounded-0"><i class="bi bi-card-checklist"></i> Country Facts</h2>
+              <div class="currentWeather"></div>
+            </div>
+            <div>
+              <h2 class="p-2 m-1 card-header bg-warning bg-gradient rounded-0"><i class="bi bi-play-btn"></i> Video </h2>
+              <div class="forecast"></div>
+            </div>
+        </section>
+        
+    </main>
+
+    <Footer class="p-2 mt-4 text-center bg-warning bg-gradient fixed-bottom">
+      <h5 class="">Presented by: Amrita, Daniel, Matthew, Katie, Isaiah</h1>
+    </Footer>
+
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+	  <script src="Assets/script/script.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
+</body>
+  </body>
+</html>
