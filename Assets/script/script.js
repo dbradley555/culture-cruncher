@@ -1,20 +1,23 @@
 let countryArray = JSON.parse(localStorage.getItem('countries')) || [];
 
 // Event listener function for search button.
-$('#searchBtn').on('click', function () {
-  let countryInput = $('#countryInput');
-  country = countryInput.val().trim();
-  if (country === '') {
-    countryInput.attr('placeholder', '*City cannot be empty*');
-    return;
-  } else {
-    countryArray.push(country);
-    localStorage.setItem('countries', JSON.stringify(countryArray));
-    displayHistory();
-    countryInput.val('');
-  }
-  fetchCulture(country);
-});
+$("#searchBtn").on('click', countryGetArr
+);
+
+function countryGetArr() {
+    let countryInput = $("#countryInput");
+    country = countryInput.val().trim();
+
+    if (country === "") {
+        countryInput.attr("placeholder", "*City cannot be empty*");
+        return;
+    } else {
+        countryArray.push(country);
+        localStorage.setItem("countries", JSON.stringify(countryArray));
+        displayHistory();
+        countryInput.val("");
+        };
+     fetchCulture(country)};
 
 //  Clears the the search history list
 $('#clearBtn').on('click', function () {
@@ -59,21 +62,22 @@ function fetchCulture(country) {
 function cultureDisplay(data) {
   $('#cultureDisplay').empty();
 
-  let countryName = $('<h3>');
-  let countryContinent = $('<p>');
-  let countryCapital = $('<p>');
-  let countryLanguage = $('<p>');
-  let countryCurrency = $('<p>');
-  let countryFlag = $('<img>');
-  let countryPopulation = $('<p>');
+    let countryName = $("<h3>");
+    let countryContinent = $("<p>");
+    let countryCapital = $("<p>");
+    let countryLanguage = $("<p>");
+    let countryCurrency = $("<p>");
+    let countryFlag = $("<img>");
+    let countryPopulation = $("<p>");
+    let populationWithCommas = data[0].population.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",");
 
-  countryName.text(data[0].name.common);
-  countryContinent.text('Continent: ' + data[0].continent);
-  countryCapital.text('Capital: ' + data[0].capital);
-  countryLanguage.text('Languages: ' + data[0].languages[0].name);
-  countryCurrency.text('Currency: ' + data[0].currencies[0].name);
-  countryFlag.attr('src', data[0].flags.png);
-  countryPopulation.text('Population: ' + data[0].population);
+    countryName.text(data[0].name)
+    countryContinent.text("Subregion: " + data[0].subregion)
+    countryCapital.text("Capital: " + data[0].capital)
+    countryLanguage.text("Languages: " + data[0].languages[0].name)
+    countryCurrency.text("Currency: " + data[0].currencies[0].name)
+    countryFlag.attr("src", data[0].flags.png)
+    countryPopulation.text("Population: " + populationWithCommas)
 
   $('#cultureDisplay').append(
     countryName,
