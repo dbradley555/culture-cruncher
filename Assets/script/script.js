@@ -1,107 +1,87 @@
-function loadPage(){
-    let city;
-    let cityArray = JSON.parse(localStorage.getItem("cities")) || [];
-    // Creates API call Key for inputed City 
-    const APIKey = "851f848d274c31bfc439d660f647c15c";
-    let APICall = ("https://api.openweathermap.org/data/2.5/weather?q=" + city +"&appid=" + APIKey);
+let countryArray = JSON.parse(localStorage.getItem("countries")) || [];
 
+// Event listener function for search button.
+$("#searchBtn").on('click',function(){
+    let countryInput = $("#countryInput");
+    country = countryInput.val().trim();
 
-    // Event listener function for search button.
-    $("#searchBtn").on('click',function(){
-        let cityInput = $("#cityInput");
-        city = cityInput.val().trim();
-        if (city === "") {
-            return;
-            }
-        cityArray.push(city);
-        localStorage.setItem("cities", JSON.stringify(cityArray));
+    if (country === "") {
+        countryInput.attr("placeholder", "*City cannot be empty*");
+        return;
+    } else {
+        countryArray.push(country);
+        localStorage.setItem("countries", JSON.stringify(countryArray));
         displayHistory();
-        location.reload();
-    });
+        countryInput.val("");
+        };
+     fetchCulture(country)
+});
 
-    //  Clears the the search history list
-    $("#clearBtn").on("click", function(){
-        localStorage.clear();
-        cityArray = [];
-        displayHistory();
-        location.reload();
-    });
+//  Clears the the search history list
+$("#clearBtn").on("click", function(){
+    localStorage.clear();
+    countryArray = [];
+    $(".history").empty();
+});
 
-    function displayHistory(){
-        $(".history").innerHTML = "";
-        for (let i = 0; i < cityArray.length; i++) {
-                let listedCity = $("<button>")
-                listedCity.text(cityArray[i])
-                listedCity.addClass("p-2 btn btn-light rounded-0 d-block");
-                listedCity.on('click',function() {
-                    fetchWeather(listedCity.val());
-                })
-                $(".history").append(listedCity)
-            };
-    }
+//click funtion from the serach history list when the selected list item is clicked
+$(".history").on('click', function(event) {
+    event.preventDefault();
+    console.log($(".history").value = event.target.textContent);
+    fetchCulture($(".history").value = event.target.textContent);
+});
 
-        displayHistory();
-        if (cityArray.length > 0) {
-            fetchWeather(cityArray[cityArray.length - 1]);
+function displayHistory(){
+    // filters cityArray to only display the most recent searches
+    let historyArray = countryArray.reverse().slice(0,6);
+   console.log("updated array is " + historyArray);
+    $(".history").empty();
+    for (let i = 0; i < historyArray.length; i++) {
+            let listedCountry = $("<button>")
+            listedCountry.text(historyArray[i]);
+            listedCountry.addClass("m-1 p-2 btn btn-outline-dark rounded-0 listed");
+            $(".history").append(listedCountry)
         }
-    function fetchWeather() {
-
-    }
-
 }
+function fetchCulture(country) {
+// Creates API call for inputed country
+    let restURL = "https://restcountries.com/v2/name/" + country;
+  
+fetch(restURL)
+    .then(function(response){
+    return response.json()})
+    .then(function(data){
+    console.log(data);
+    cultureDisplay(data)
+    })
+};
 
-loadPage();
+function cultureDisplay(data){
+    $("#cultureDisplay").empty();
 
-// // displays the searched city into search History
-// function displayHistory() {
-//     let searchHistory = $(".history");
-//     // searchHistory.innerHTML = "";
+    let countryName = $("<h3>");
+    let countryContinent = $("<p>");
+    let countryCapital = $("<p>");
+    let countryLanguage = $("<p>");
+    let countryCurrency = $("<p>");
+    let countryFlag = $("<img>");
+    let countryPopulation = $("<p>");
 
-//     for (let i = 0; i < cityArray.length; i++) {
-//         let city = cityArray[i];
-//         let listedCity = $("<button>").text(city).addClass("p-2 btn btn-light rounded-0 d-block");
+    countryName.text(data[0].name.common)
+    countryContinent.text("Continent: " + data[0].continent)
+    countryCapital.text("Capital: " + data[0].capital)
+    countryLanguage.text("Languages: " + data[0].languages[0].name)
+    countryCurrency.text("Currency: " + data[0].currencies[0].name)
+    countryFlag.attr("src", data[0].flags.png)
+    countryPopulation.text("Population: " + data[0].population)
 
-//         searchHistory.append(listedCity)
-//     };
-// };
+    $("#cultureDisplay").append(countryName, countryFlag, countryContinent, countryCapital, countryLanguage, countryCurrency, countryPopulation);
+};
 
-// // saves the searched city into the local storage
-// function saveSearch(){
-//     localStorage.setItem("cityArray", JSON.stringify(cityArray));
-//     displayHistory();
+// function fetchVideo(country){
+//     let youtubeKey = AIzaSyBebX8RUr7J4vhMZF9vetbGgSKadOyS8z4;
+//     let youtubeURL = 
+
 // }
 
-// function load() {
-//     let storedHistory = JSON.parse(localStorage.getItem("cityArray")) || [];
-    
-//     if (storedHistory !== null) {
-//         cityArray = storedHistory;
-//     }
-//     displayHistory();
-// }
-
-// // Event listener function for search button.
-// $("#searchBtn").on('click',function(event){
-//     event.preventDefault();
-//     let cityField = $("#cityInput");
-//     cityInput = cityField.val().trim();
-
-//     if (cityInput === "") {
-//         return;
-//       }
-//     cityArray.push(cityInput);
-//     cityField.val("");
-
-//     saveSearch();
-//     displayHistory();
-// });
-
-// // Clears the the search history list
-// $("#clearBtn").on("click", function(){
-//     localStorage.clear();
-//     let cityArray = [];
-//     location.reload();
-// });
-
-// load();
-
+displayHistory();
