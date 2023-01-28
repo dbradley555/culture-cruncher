@@ -16,7 +16,7 @@ $('#randomBtn').click(function() {
 
     countryArray.push(country);
         localStorage.setItem("countries", JSON.stringify(countryArray));
-        displayHistory();
+         displayHistory();
         countryInput.val("");
 
 });

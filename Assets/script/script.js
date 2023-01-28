@@ -8,12 +8,14 @@ function countryGetArr() {
     let countryInput = $("#countryInput");
     country = countryInput.val().trim();
 
+      // If search bar is empty upon clicking search button, prompt user with error and do nothing. 
     if (country === "") {
         countryInput.attr("placeholder", "*City cannot be empty*");
         return;
+      // If user inputs text and clicks on search button, do this. 
     } else {
         countryArray.push(country);
-        localStorage.setItem("countries", JSON.stringify(countryArray));
+        localStorage.setItem("countries", JSON.stringify(countryArray)); 
         displayHistory();
         countryInput.val("");
         };
@@ -34,15 +36,23 @@ $('.history').on('click', function (event) {
 });
 
 function displayHistory() {
+
   // filters cityArray to only display the most recent searches
-  let historyArray = countryArray.reverse().slice(0, 6);
+  // Only appends 6 results at a time in the search history.
+  let historyArray = countryArray.slice(0, 6);
   console.log('updated array is ' + historyArray);
   $('.history').empty();
   for (let i = 0; i < historyArray.length; i++) {
-    let listedCountry = $('<button>');
+    let listedCountry = $('<button>'); 
     listedCountry.text(historyArray[i]);
     listedCountry.addClass('m-1 p-2 btn btn-outline-dark rounded-0 listed');
-    $('.history').append(listedCountry);
+    $('.history').prepend(listedCountry); // Creates and appends button element starting from the top. 
+    console.log('countries');
+
+  }
+  // If results history exceeds 6, overwrite oldest search.
+  if (historyArray.length > 5) {
+    console.log('limit reached');
   }
 }
 function fetchCulture(country) {
@@ -96,4 +106,4 @@ function cultureDisplay(data) {
 
 // }
 
-displayHistory();
+// displayHistory();
