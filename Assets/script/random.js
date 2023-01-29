@@ -1,5 +1,3 @@
-
-
 // Random country selector when button is clicked
 
 $('#randomBtn').click(function() {
