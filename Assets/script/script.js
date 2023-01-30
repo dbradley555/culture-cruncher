@@ -6,11 +6,10 @@ $('#searchBtn').on('click', function () {
   country = countryInput.val().trim();
   if (country === '') {
     $('.errorMsg').text('Please enter a country');
-    countryInput.attr('style', 'border:1px solid #f02849;')
+    countryInput.attr('style', 'border:1px solid #f02849;');
     $('.errorMsg').attr('style', 'color:red;');
     return;
-    } 
-    else {
+  } else {
     $('.errorMsg').text('');
     countryInput.attr('style', 'border 1px solid #0000; color:black');
     countryArray.push(country);
@@ -36,18 +35,16 @@ $('.history').on('click', function (event) {
 });
 
 function displayHistory() {
-
   // filters cityArray to only display the most recent searches
   let historyArray = countryArray.slice(0, 6); // Only holds 6 results at a time in the search history.
   console.log('updated array is ' + historyArray);
   $('.history').empty();
   for (let i = 0; i < historyArray.length; i++) {
-    let listedCountry = $('<button>'); 
+    let listedCountry = $('<button>');
     listedCountry.text(historyArray[i]);
     listedCountry.addClass('m-1 p-2 btn btn-outline-dark rounded-0 listed');
-    $('.history').prepend(listedCountry); // Creates and appends button element starting from the top of the Search History container. 
+    $('.history').prepend(listedCountry); // Creates and appends button element starting from the top of the Search History container.
     console.log('countries');
-
   }
   // If results history exceeds 6, overwrite oldest search.
   if (historyArray.length > 5) {
@@ -78,14 +75,17 @@ function cultureDisplay(data) {
   let countryCurrency = $('<p>');
   let countryFlag = $('<img>');
   let countryPopulation = $('<p>');
+  let countryPopCommas = data[0].population
+    .toString()
+    .replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ',');
 
-  countryName.text(data[0].name.common);
-  countryContinent.text('Continent: ' + data[0].continent);
+  countryName.text(data[0].name);
+  countryContinent.text('Subregion: ' + data[0].subregion);
   countryCapital.text('Capital: ' + data[0].capital);
   countryLanguage.text('Languages: ' + data[0].languages[0].name);
   countryCurrency.text('Currency: ' + data[0].currencies[0].name);
   countryFlag.attr('src', data[0].flags.png);
-  countryPopulation.text('Population: ' + data[0].population);
+  countryPopulation.text('Population: ' + countryPopCommas);
 
   $('#cultureDisplay').append(
     countryName,
@@ -97,12 +97,3 @@ function cultureDisplay(data) {
     countryPopulation
   );
 }
-
-// function fetchVideo(country){
-//     let youtubeKey = AIzaSyBebX8RUr7J4vhMZF9vetbGgSKadOyS8z4;
-//     let youtubeURL =
-
-// }
-
-// displayHistory();
-
