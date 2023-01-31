@@ -1,15 +1,13 @@
-// const ytAPIKey = config.youtubeAPIKey;
-const ytAPIKey = "AIzaSyCLLY3CQlzvQnUwgZ9ZvIkMGeYVr_N5dfU";
+const ytAPIKey = config.youtubeAPIKey;
+// const ytAPIKey = 'AIzaSyCLLY3CQlzvQnUwgZ9ZvIkMGeYVr_N5dfU';
 const ytURL = 'https://www.googleapis.com/youtube/v3/search';
 const videoDisplay = $('#videoDisplay');
 const searchBtn = $('#searchBtn');
 const randomBtn = $('#randomBtn');
-const historyVideo = $('.history');
 
 // event listener
 searchBtn.on('click', getYoutubeVideo);
 
-historyVideo.on('click', getVideoBtn);
 // FUNCTIONS TO EMBED A YOUTUBE VIDEO - NEEDS TO BE LINKED TO THE SEARCH TERM
 
 function getYoutubeVideo() {
