@@ -44,4 +44,4 @@ public
 sftp-config.json
 
 #config
-config.js
+# config.js

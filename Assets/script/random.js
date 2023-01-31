@@ -47,7 +47,7 @@ $('#randomBtn').click(function () {
     'Congo',
     'Cook Islands',
     'Costa Rica',
-    'Cote D Ivoire',
+    'Ivory Coast',
     'Croatia',
     'Cruise Ship',
     'Cuba',
@@ -162,7 +162,6 @@ $('#randomBtn').click(function () {
     'Saint Pierre and Miquelon',
     'Samoa',
     'San Marino',
-    'Satellite',
     'Saudi Arabia',
     'Senegal',
     'Serbia',
@@ -175,10 +174,9 @@ $('#randomBtn').click(function () {
     'South Korea',
     'Spain',
     'Sri Lanka',
-    'St Kitts and Nevis',
-    'St Lucia',
-    'St Vincent',
-    'St. Lucia',
+    'Saint Kitts and Nevis',
+    'Saint Lucia',
+    'Saint Vincent',
     'Sudan',
     'Suriname',
     'Swaziland',
@@ -221,4 +219,29 @@ $('#randomBtn').click(function () {
   localStorage.setItem('countries', JSON.stringify(countryArray));
   displayHistory();
   countryInput.val('');
+
+  videoDisplay.css('display', 'none');
+  $(videoDisplay).empty();
+
+  $.ajax({
+    type: 'GET',
+    url: ytURL,
+    data: {
+      key: ytAPIKey,
+
+      q: `Popular food in ${country}`,
+
+      part: 'snippet',
+      maxResults: 1,
+      type: 'video',
+      videoEmbeddable: true,
+      allowFullScreen: true,
+    },
+    success: function (data) {
+      embedVideo(data);
+    },
+    error: function (response) {
+      console.log('Request Failed');
+    },
+  });
 });
