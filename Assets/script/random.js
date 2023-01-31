@@ -213,7 +213,10 @@ $('#randomBtn').click(function () {
 
   console.log(country);
 
-  fetchCulture(country);
+    countryArray.unshift(country);
+        localStorage.setItem("countries", JSON.stringify(countryArray));
+        displayHistory();
+        // countryInput.val("");
 
   countryArray.push(country);
   localStorage.setItem('countries', JSON.stringify(countryArray));
