@@ -5,9 +5,9 @@ $('#searchBtn').on('click', function () {
   let countryInput = $('#countryInput');
   country = countryInput.val().trim();
   if (country === '') {
-    $('.errorMsg').text('Please enter a country');
+    // $('.errorMsg').text('Please enter a country');
     countryInput.attr('style', 'border:1px solid #f02849;');
-    $('.errorMsg').attr('style', 'color:red;');
+    countryInput.attr('placeholder', 'Please enter a country');
     return;
   } else {
     $('.errorMsg').text('');
@@ -25,31 +25,32 @@ $('#clearBtn').on('click', function () {
   localStorage.clear();
   countryArray = [];
   $('.history').empty();
+  $('#flag').empty();
+  $('#countryName').empty();
+  $('#factList').empty();
+
 });
 
-//click funtion from the serach history list when the selected list item is clicked
+//click function from the serach history list when the selected list item is clicked
 $('.history').on('click', function (event) {
   event.preventDefault();
-  console.log(($('.history').value = event.target.textContent));
+  // console.log(($('.history').value = event.target.textContent));
   fetchCulture(($('.history').value = event.target.textContent));
 });
 
 function displayHistory() {
   // filters cityArray to only display the most recent searches
-  let historyArray = countryArray.slice(0, 10); // Only holds 6 results at a time in the search history.
+  let historyArray = countryArray.slice(0, 8); // Only holds 6 results at a time in the search history.
   console.log('updated array is ' + historyArray);
   $('.history').empty();
   for (let i = 0; i < historyArray.length; i++) {
     let listedCountry = $('<button>');
     listedCountry.text(historyArray[i]);
-    listedCountry.addClass('btn listed grey darken-1');
+    listedCountry.addClass('list black-text');
     $('.history').append(listedCountry); // Creates and appends button element starting from the top of the Search History container.
     console.log('countries');
   }
-  // // If results history exceeds 6, overwrite oldest search.
-  // if (historyArray.length > 5) {
-  //   console.log('limit reached');
-  // }
+
 }
 function fetchCulture(country) {
   // Creates API call for inputed country
@@ -66,18 +67,18 @@ function fetchCulture(country) {
 }
 
 function cultureDisplay(data) {
-  $('#cultureDisplay').empty();
+  $('#flag').empty();
+  $('#countryName').empty();
+  $('#factList').empty();
 
-  let countryName = $('<h3>');
+  let countryName = $('<h4>');
   let countryContinent = $('<p>');
   let countryCapital = $('<p>');
   let countryLanguage = $('<p>');
   let countryCurrency = $('<p>');
   let countryFlag = $('<img>');
   let countryPopulation = $('<p>');
-  let countryPopCommas = data[0].population
-    .toString()
-    .replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ',');
+  let countryPopCommas = data[0].population.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ',');
 
   countryName.text(data[0].name);
   countryContinent.text('Region: ' + data[0].subregion);
@@ -87,9 +88,10 @@ function cultureDisplay(data) {
   countryFlag.attr('src', data[0].flags.png);
   countryPopulation.text('Population: ' + countryPopCommas);
 
-  $('#cultureDisplay').append(
-    countryName,
-    countryFlag,
+  $('#flag').append(countryFlag,);
+  $('#countryName').append(countryName);
+
+  $('#factList').append(
     countryContinent,
     countryCapital,
     countryLanguage,
@@ -112,7 +114,6 @@ function randomGenerator() {
     'Andorra',
     'Angola',
     'Anguilla',
-    'Antarctica',
     'Antigua and Barbuda',
     'Argentina',
     'Armenia',
@@ -162,7 +163,6 @@ function randomGenerator() {
     'Cuba',
     'Curaçao',
     'Cyprus',
-    'Czechia',
     'Denmark',
     'Djibouti',
     'Dominica',
@@ -200,7 +200,6 @@ function randomGenerator() {
     'Guinea-Bissau',
     'Guyana',
     'Haiti',
-    'Holy See',
     'Honduras',
     'Hong Kong',
     'Hungary',
@@ -337,7 +336,6 @@ function randomGenerator() {
     'United Arab Emirates',
     'United Kingdom',
     'United States of America',
-    'United States Minor Outlying Islands',
     'Uruguay',
     'Uzbekistan',
     'Vanuatu',
@@ -359,12 +357,6 @@ function randomGenerator() {
   countryArray.unshift(country);
   localStorage.setItem('countries', JSON.stringify(countryArray));
   displayHistory();
-  // countryInput.val("");
-
-  // countryArray.push(country);
-  // localStorage.setItem('countries', JSON.stringify(countryArray));
-  // displayHistory();
-  // countryInput.val('');
 
   videoDisplay.css('display', 'none');
   $(videoDisplay).empty();
@@ -392,4 +384,4 @@ function randomGenerator() {
   });
 }
 
-// displayHistory();
+displayHistory();
