@@ -5,67 +5,69 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Sofia+Sans:wght@100;400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
     <link rel="stylesheet" href="Assets/css/style.css">
     <link rel="icon" href="Assets/Images/globe.png" type="image/x-icon">
     <title>Culture Cruncher</title>
   </head>
-  <body class="bg-body-secondary">
-    <header class="p-2 mb-4 border-1 border-bottom text-center bg-warning bg-gradient">
-        <h1><i class="bi bi-globe"></i> Culture Cruncher</h1>
+  <body class="brown lighten-5 ">
+
+    <header class="center">
+        <h3><i class="bi bi-globe"></i> Culture Cruncher</h3>
     </header>
 
     
-    <main class="flex-wrap d-flex" >
+    <main class="flex-wrap d-flex transparent" >
         <!-- Search Display -->
-        <section class="p-2 col-12 col-sm-12 col-md-4 float-left ">
-            <div class="card rounded-0 ">
-                <h4 class="card-header bg-warning bg-gradient rounded-0"><i class="bi bi-search"></i> Search for Country</h4>
+        <section class=" col-12 col-sm-12 col-md-4 float-left transparent">
+            <div class="card rounded-0 transparent ">
+                <h4 class="card-header amber darken-3 rounded-0"><i class="bi bi-search"></i> Search for Country</h4>
                 <div class="card-body row m-1">
                   <input type="text" id="countryInput" placeholder="Enter country name...">
                   <div class="errorMsg"></div>
-                  <button class="mt-2 btn btn-dark rounded-0 d-block" id="searchBtn">Search</button>
-                  <button class="m2-2 btn btn-primary rounded-0 d-block" id="randomBtn">Random Country</button>
+                  <button class="mt-2 btn brown rounded-0 d-block" id="searchBtn">Search</button>
+                  <button class="mt-2 btn grey darken-4 rounded-0 d-block" id="randomBtn">Random Country</button>
                 </div>
                 <div class="d-grid gap-2">
-                    <h4 class="card-header bg-warning bg-gradient rounded-0"><i class="bi bi-clock-history"></i> Search History</h4>
+                    <h4 class="card-header amber darken-3 rounded-0"><i class="bi bi-clock-history"></i> Search History</h4>
                     <div class="d-grid gap-2 m-2 card-body history">
                       <!-- Search History list will be appeneded here -->
                     </div>
-                    <button class="mt-2 btn btn-dark rounded-0 d-block" id="clearBtn">Clear History</button> 
+                    <button class="mt-2 btn red darken-3 rounded-0 d-block" id="clearBtn">Clear History</button> 
                 </div>
             </div>
         </section>  
 
-        
-
         <!-- Facts -->
         <section class="p-2 col-12 col-sm-12 col-md-8 float-right">
             <div>
-              <h3 class="p-2 m-1 card-header bg-warning bg-gradient rounded-0"><i class="bi bi-card-checklist"></i> Country Facts</h3>
+              <h4 class="p-2 m-1 card-header amber darken-3 rounded-0"><i class="bi bi-card-checklist"></i> Country Facts</h4>
               <div id="cultureDisplay"></div>
             </div>
-            <div>
-              <h3 class="p-2 m-1 card-header bg-warning bg-gradient rounded-0"><i class="bi bi-play-btn"></i> Video </h3>
-              <div id="videoDisplay"></div>
+            <h4 class="p-2 m-1 card-header amber darken-3 rounded-0"><i class="bi bi-play-btn"></i> Video </h4>
+            <h5 id="videoTitle"></h5>
+            <div class="video-container">
+                <iframe width="100%" height="100%" frameborder="0" allowfullscreen></iframe>
             </div>
         </section>
 
-
-        
     </main>
 
-    <Footer class="p-2 mt-4 text-center bg-warning bg-gradient fixed-bottom">
+    <Footer class="p-2 mt-4 text-center amber darken-3">
       <h5 class="">Presented by: Amrita, Daniel, Matthew, Katie, Isaiah</h1>
     </Footer>
 
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-    <script src="./assets/script/config.js"></script>
-    <script src="./assets/script/youtubeapi.js"></script>
-    <script src="./Assets/script/script.js"></script>
-    <script src="./Assets/script/random.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <!-- <script src="./assets/script/config.js"></script> -->
+    <script src="./assets/script/youtubeapi.js"></script>
+      <script src="./Assets/script/random.js"></script>
+    <script src="./Assets/script/script.js"></script>
+
+    
 </body>
   </body>
-</html>
+</html> 
