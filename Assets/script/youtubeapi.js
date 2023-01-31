@@ -42,34 +42,6 @@ function getYoutubeVideo() {
   });
 }
 
-function getVideoBtn(event) {
-  videoDisplay.css('display', 'none');
-  $(videoDisplay).empty();
-  historyVideo.value = event.target.textContent;
-  console.log('YOUTUBE API CALL');
-
-  $.ajax({
-    type: 'GET',
-    url: ytURL,
-    data: {
-      key: ytAPIKey,
-      q: `The most popular dishes from ${historyVideo.value}`,
-
-      part: 'snippet',
-      maxResults: 1,
-      type: 'video',
-      videoEmbeddable: true,
-      allowFullScreen: true,
-    },
-    success: function (data) {
-      embedVideo(data);
-    },
-    error: function (response) {
-      console.log('Request Failed');
-    },
-  });
-}
-
 // Function that embeds YouTube video
 function embedVideo(data) {
   let dataTitle = data.items[0].snippet.title;
@@ -87,6 +59,3 @@ function embedVideo(data) {
   // videoDisplay.append(videoTitle);
   // videoDisplay.append(videoEl);
 }
-
-// // EVENT LISTENERS
-// drinkForm.addEventListener('submit', pushDrink);
