@@ -46,14 +46,4 @@ function embedVideo(data) {
   let dataVideoID = data.items[0].id.videoId;
   $('iframe').attr('src', `https://www.youtube.com/embed/${dataVideoID}`);
   $('#videoTitle').text(dataTitle);
-  // const videoEl = $('<iframe>');
-  // const videoTitle = $('<h5>');
-  // videoTitle.addClass('video');
-  // videoTitle.text(dataTitle);
-  // videoEl.attr('allowFullScreen', '');
-  // videoEl.attr('width', '100%');
-  // videoEl.attr('height', '100%');
-  // videoDisplay.css('display', 'inline');
-  // videoDisplay.append(videoTitle);
-  // videoDisplay.append(videoEl);
 }
