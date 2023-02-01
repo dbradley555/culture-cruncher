@@ -59,3 +59,32 @@ body {
     color: rgb(0, 0, 0);
 }
 
+.card {
+    background: rgba(255, 255, 255, 0.25);
+    box-shadow: none;
+    border-radius: none;
+    
+}
+
+.nav {
+    background: rgba(0, 0, 0, 0.2);
+    color: white;
+}
+
+::placeholder {
+    color: black;
+    padding: 2px;
+}
+
+footer {
+    color: white;
+    font-weight: lighter;
+    position: fixed;
+    margin-top: 30px;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+    width:100%;
+    height:50px;
+    padding-top: 1.5px;
+    text-align: center;
+}
